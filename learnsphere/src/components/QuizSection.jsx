@@ -27,11 +27,6 @@ const QuizSection = ({ quiz }) => {
 
   return (
     <div>
-      <div className="section-header">
-        <Award className="section-icon" />
-        <h2>Quiz</h2>
-      </div>
-
       <div className="quiz-container">
         {quiz.map((question, index) => (
           <div key={index} className="quiz-question">

@@ -5,9 +5,9 @@ import ChapterSidebar from './ChapterSidebar';
 import DiagramViewer from './DiagramViewer';
 import FlashcardSection from './FlashcardSection';
 import QuizSection from './QuizSection';
-import './NoteViewer.css';
+import './NoteViewer.css'; // ✅ Updated CSS import
 
-const NoteViewer = ({ data }) => {
+const NoteViewer= ({ data }) => {
   const [activeSection, setActiveSection] = useState('notes');
   const [activeChapter, setActiveChapter] = useState(0);
 
@@ -28,7 +28,7 @@ const NoteViewer = ({ data }) => {
   }, []);
 
   return (
-    <div className="notes-container">
+    <div className="notes-container-2">
       <ChapterSidebar
         chapters={data.output.courseOutline}
         activeChapter={activeChapter}
@@ -37,71 +37,77 @@ const NoteViewer = ({ data }) => {
         onSectionClick={setActiveSection}
       />
 
-      <main className="notes-content">
-        <header className="notes-header">
-          <div className="header-gradient">
-            <div className="header-content">
-              <h1 className="course-title">{data.subject}</h1>
+      <main className="notes-content-2">
+        <header className="notes-header-2">
+          <div className="header-gradient-2">
+            <div className="header-content-note-2">
+              <h1 className="course-title-2">{data.subject}</h1>
             </div>
           </div>
         </header>
 
-        <div className="content-wrapper">
-          <section data-section="notes" className="content-section notes-section">
-            <div className="section-header">
-              <FileText className="section-icon" />
+        <section data-section="chapters" className="content-section-note-2 chapters-section-2">
+          <div className="section-header-note-2">
+            <BookOpen className="section-icon-2" />
+            <h2>Course Outline</h2>
+          </div>
+          <div className="chapters-grid-2">
+            {data.output.courseOutline.map((chapter, index) => (
+              <div
+                key={index}
+                className={`chapter-card-2 ${activeChapter === index ? 'active' : ''}`}
+                onClick={() => setActiveChapter(index)}
+              >
+                <div className="chapter-number-2">
+                  <span>{index + 1}</span>
+                </div>
+                <p className="chapter-title-2">{chapter}</p>
+                {activeChapter === index && (
+                  <CheckCircle className="chapter-check-2" size={20} />
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div className="content-wrapper-note-2">
+          <section data-section="notes" className="content-section-note-2 notes-section-2">
+            <div className="section-header-note-2">
+              <FileText className="section-icon-2" />
               <h2>Course Notes</h2>
             </div>
-            <div className="markdown-content">
+            <div className="markdown-content-2">
               <ReactMarkdown>{data.output.notes}</ReactMarkdown>
             </div>
           </section>
 
-          <div className="section-divider" />
+          <div className="section-divider-2" />
 
-          <section data-section="diagram" className="content-section diagram-section">
-            <div className="section-header">
-              <Layers className="section-icon" />
+          <section data-section="diagram" className="content-section-note-2 diagram-section-2">
+            <div className="section-header-note-2">
+              <Layers className="section-icon-2" />
               <h2>Visual Diagram</h2>
             </div>
             <DiagramViewer diagram={data.output.diagram} />
           </section>
 
-          <div className="section-divider" />
+          <div className="section-divider-2" />
 
-          <section data-section="chapters" className="content-section chapters-section">
-            <div className="section-header">
-              <BookOpen className="section-icon" />
-              <h2>Course Outline</h2>
+          <section data-section="flashcards" className="content-section-note-2">
+            <div className="section-header-note-2">
+              <Layers className="section-icon-2" />
+              <h2>Flashcards</h2>
             </div>
-            <div className="chapters-grid">
-              {data.output.courseOutline.map((chapter, index) => (
-                <div
-                  key={index}
-                  className={`chapter-card ${activeChapter === index ? 'active' : ''}`}
-                  onClick={() => setActiveChapter(index)}
-                >
-                  <div className="chapter-number">
-                    <span>{index + 1}</span>
-                  </div>
-                  <p className="chapter-title">{chapter}</p>
-                  {activeChapter === index && (
-                    <CheckCircle className="chapter-check" size={20} />
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <div className="section-divider" />
-
-          <section data-section="flashcards" className="content-section">
             <FlashcardSection flashcards={data.output.flashcards} />
           </section>
 
-          <div className="section-divider" />
+          <div className="section-divider-2" />
 
-          <section data-section="quiz" className="content-section">
+          <section data-section="quiz" className="content-section-note-2">
+             <div className="section-header-note-2">
+              <Layers className="section-icon-2" />
+              <h2>Quiz</h2>
+            </div>
             <QuizSection quiz={data.output.quiz} />
           </section>
         </div>

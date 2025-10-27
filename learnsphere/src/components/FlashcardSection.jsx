@@ -17,10 +17,7 @@ const FlashcardSection = ({ flashcards }) => {
 
   return (
     <div>
-      <div className="section-header">
-        <Brain className="section-icon" />
-        <h2>Flashcards</h2>
-      </div>
+      
       
       <div className="flashcards-grid">
         {flashcards.map((card, index) => (

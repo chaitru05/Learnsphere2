@@ -39,7 +39,7 @@ export default function Dashboard() {
       <div className="dashboard-main">
         <div className="dashboard-header">
           <div className="header-left">
-            <h1 className="dashboard-title">StudyGenie</h1>
+            <h1 className="dashboard-title">LearnSphere</h1>
           </div>
           <div className="header-right">
             <button className="icon-btn">
